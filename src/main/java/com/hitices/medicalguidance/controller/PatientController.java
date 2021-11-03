@@ -1,0 +1,28 @@
+package com.hitices.medicalguidance.controller;
+
+import com.hitices.common.MResponse;
+import com.hitices.medicalguidance.bean.Patient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * @author Lei
+ * @version 0.1
+ * @date 2021/11/03
+ */
+@RequestMapping("/api/v1/patientCotroller")
+public class PatientController {
+
+
+    @PostMapping("registerPatient")
+    public MResponse addPatientInfo(@RequestBody Patient patient){
+        try {
+            MResponse m = MResponse.successMResponse();
+
+            return m;
+        }catch (Exception e){
+            return MResponse.failedMResponse();
+        }
+    }
+}
