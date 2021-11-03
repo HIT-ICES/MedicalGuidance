@@ -29,7 +29,7 @@ public class IllNess {
     private String location;
 
     //症状
-    private com.hitices.patientservice.bean.Symptom symptom;
+    private Symptom symptom;
 
 
 
