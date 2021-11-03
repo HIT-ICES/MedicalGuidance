@@ -1,6 +1,8 @@
 package com.hitices.medicalguidance.bean;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -9,9 +11,10 @@ import lombok.Setter;
  * @date 2021/11/03
  * 病人信息, 可以附带注册信息
  */
-
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Patient {
 
     // 患者姓名
