@@ -1,4 +1,4 @@
-package com.hitices.medicalguidance.bean;
+package com.hitices.medicalguidance.bean.Ill;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +30,5 @@ public class IllNess {
 
     //症状
     private Symptom symptom;
-
-
 
 }

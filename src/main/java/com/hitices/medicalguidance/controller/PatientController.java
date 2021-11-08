@@ -1,7 +1,8 @@
 package com.hitices.medicalguidance.controller;
 
 import com.hitices.common.MResponse;
-import com.hitices.medicalguidance.bean.Patient;
+import com.hitices.medicalguidance.bean.user.Patient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api/v1/patientCotroller")
 public class PatientController {
 
-
+    //注册病人信息
     @PostMapping("registerPatient")
     public MResponse addPatientInfo(@RequestBody Patient patient){
         try {
             MResponse m = MResponse.successMResponse();
+
+
+            return m;
+        }catch (Exception e){
+            return MResponse.failedMResponse();
+        }
+    }
+
+
+    @GetMapping("getMyPatientIll")
+    public MResponse getMyPatientIll(){
+        try {
+            MResponse m = MResponse.successMResponse();
+
+            return m;
+        }catch (Exception e){
+            return MResponse.failedMResponse();
+        }
+    }
+
+
+    @GetMapping("openChat")
+    public MResponse openChat(){
+        try {
+            MResponse m = MResponse.successMResponse();
+            // todo: 请求打开一个聊天的窗口， 及时聊天记录
 
             return m;
         }catch (Exception e){

@@ -1,4 +1,4 @@
-package com.hitices.medicalguidance.bean;
+package com.hitices.medicalguidance.bean.Ill;
 
 /**
  * @author Lei

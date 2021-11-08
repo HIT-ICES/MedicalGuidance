@@ -1,21 +1,32 @@
-package com.hitices.medicalguidance.bean;
+package com.hitices.medicalguidance.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author Lei
  * @version 0.1
- * @date 2021/11/03
- * 病人信息, 可以附带注册信息
+ * @date 2021/11/07
  */
-@Getter
+
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patient {
+@Entity
+@Table(name="patientInfo")
+public class PatientDao {
+
+
+
+    @Id
+    private int userid;
 
     // 患者姓名
     private String patienName;
@@ -32,8 +43,5 @@ public class Patient {
     // 身份证号码
     private String idNumber;
 
-    @Override
-    public String toString() {
-        return "";
-    }
+
 }
