@@ -26,7 +26,7 @@ public class PatientDao {
 
 
     @Id
-    private int userid;
+    private String userid;
 
     // 患者姓名
     private String patienName;

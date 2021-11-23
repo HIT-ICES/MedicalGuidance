@@ -3,6 +3,8 @@ package com.hitices.medicalguidance.controller;
 import com.hitices.common.MResponse;
 import com.hitices.medicalguidance.bean.user.Doctor;
 import com.hitices.medicalguidance.bean.user.Patient;
+import com.hitices.medicalguidance.re.DoctorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("doctorController")
 public class DoctorController {
 
+    @Autowired
+    private DoctorRepository doctorRepository;
+
+
     //注册医生信息
-    @PostMapping("registerPatient")
+    @PostMapping("registerDoctor")
     public MResponse addPatientInfo(@RequestBody Doctor doctor){
         try {
             MResponse m = MResponse.successMResponse();
-
 
             return m;
         }catch (Exception e){

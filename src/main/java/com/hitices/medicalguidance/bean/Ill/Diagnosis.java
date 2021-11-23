@@ -3,8 +3,20 @@ package com.hitices.medicalguidance.bean.Ill;
 import com.hitices.medicalguidance.bean.Ill.IllNess;
 import com.hitices.medicalguidance.bean.user.Doctor;
 import com.hitices.medicalguidance.bean.user.Patient;
+import com.hitices.medicalguidance.dao.DiagnosisDao;
+import com.hitices.medicalguidance.re.DoctorRepository;
+import com.hitices.medicalguidance.utils.TimeChange;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Lei
@@ -12,20 +24,60 @@ import java.util.Date;
  * @date 2021/11/07
  * 诊断单
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Diagnosis {
 
-    // 病症
-    private IllNess illNess;
+    private String id;
 
-    //患者
-    private Patient patient;
+    // 病症
+    private String illNessId;
+
 
     //医生信息
     private Doctor doctor;
 
-    //医生给出的回执信息
-    private Ans ans;
+    // 诊断结果
+    private String result;
+
+    // 使用那些药物
+    private List<String> medicine;
+
+    //做那些检查
+    private List<String> check;
 
     // 回执时间
     private Date date;
+
+
+
+    public DiagnosisDao getDao(Diagnosis diagnosis){
+        return new DiagnosisDao(
+                diagnosis.getId(),
+                diagnosis.getIllNessId(),
+                diagnosis.getDoctor().getId(),
+                diagnosis.getResult(),
+                StringUtils.join(diagnosis.getMedicine().toArray(), ","),
+                StringUtils.join(diagnosis.getCheck().toArray(), ","),
+                TimeChange.getDateString(diagnosis.getDate()));
+    }
+
+    @Autowired
+    private DoctorRepository doctorRepository;
+
+    public Diagnosis getDia(DiagnosisDao dao){
+        Diagnosis diagnosis = new Diagnosis();
+        diagnosis.setId(dao.getId());
+        diagnosis.setDate(TimeChange.getDate(dao.getDate()));
+        diagnosis.setIllNessId(dao.getIllNessId());
+        diagnosis.setDoctor(Doctor.getDoctor(doctorRepository.findById(dao.getDoctorId()).get()));
+        diagnosis.setResult(dao.getResult());
+        diagnosis.setCheck(new ArrayList<String>(Arrays.asList(dao.getCheck().split(","))));
+        diagnosis.setMedicine(new ArrayList<String>(Arrays.asList(dao.getMedicine().split(","))));
+        return diagnosis;
+    }
+
+
 }

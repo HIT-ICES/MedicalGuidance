@@ -1,5 +1,8 @@
 package com.hitices.medicalguidance.bean.user;
 
+import com.hitices.medicalguidance.bean.Ill.IllType;
+import com.hitices.medicalguidance.dao.DoctorDao;
+import com.hitices.medicalguidance.dao.PatientDao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +20,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Patient {
 
+    // patient的id
+    private String patientId;
+
     // 患者姓名
     private String patienName;
-
+    
     //性别
     private int sex;
 
@@ -32,8 +38,20 @@ public class Patient {
     // 身份证号码
     private String idNumber;
 
+
     @Override
     public String toString() {
         return "";
+    }
+
+
+
+
+    public static PatientDao getDap(Patient patient){
+        return new PatientDao(patient.getPatientId(), patient.getPatienName(), patient.getSex(), patient.getOld(), patient.getTelephoneNumber(), patient.getIdNumber());
+    }
+
+    public static Patient getDoctor(PatientDao patientDao){
+        return new Patient(patientDao.getUserid(), patientDao.getPatienName(), patientDao.getSex(), patientDao.getOld(), patientDao.getTelephoneNumber(), patientDao.getIdNumber());
     }
 }
