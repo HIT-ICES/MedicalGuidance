@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `medicine`;
-USE  `medicine`;
+CREATE DATABASE IF NOT EXISTS `medicalguidance`;
+USE  `medicalguidance`;
 
 CREATE TABLE `patientInfo` (
     `userid` INTEGER NOT NULL AUTO_INCREMENT COMMENT '用户的id，主键自增',
@@ -9,7 +9,7 @@ CREATE TABLE `patientInfo` (
     `image` varchar(100) COMMENT '镜像地址',
     `port` integer  NOT NULL COMMENT '端口号',
     `basePath` varchar(100) NOT NULL COMMENT 'git仓库地址',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table `doctor` (
@@ -18,7 +18,7 @@ create table `doctor` (
     `tel` VARCHAR (100) NOT NULL COMMENT '电话',
     `Number` VARCHAR (100) NOT NULL COMMENT '身份证号码',
     `illType` varchar (100) NOT NULL COMMENT '医生的类别',
-    PRIMARY (`id`)
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -4,7 +4,17 @@ server:
 spring:
   application:
     name: MedicalGuidance
-
+  datasource:
+    url: jdbc:mysql://192.168.1.102:3306/medicalguidance?serverTimezone=CTT
+#    url: jdbc:mysql://127.0.0.1:3306/NotificationService?serverTimezone=CTT
+    username: root
+    password: HIT_ices_504
+#    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
 
 eureka:
