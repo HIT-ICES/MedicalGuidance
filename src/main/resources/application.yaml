@@ -1,11 +1,17 @@
-server:
-  port: 8080
+spring:
+  profiles:
+    active: "k8s"
 
+
+---
 spring:
   application:
     name: MedicalGuidance
+  config:
+    activate:
+      on-profile: "shiyanshi"
   datasource:
-    url: jdbc:mysql://192.168.1.102:3306/medicalguidance?serverTimezone=CTT
+    url: jdbc:mysql://192.168.1.102:3306/medicalguidance?createDatabaseIfNotExist=true&serverTimezone=CTT
 #    url: jdbc:mysql://127.0.0.1:3306/NotificationService?serverTimezone=CTT
     username: root
     password: HIT_ices_504
@@ -16,6 +22,34 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
 
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${REGISTRY_IP}:${REGISTRY_PORT}/eureka
+
+---
+spring:
+  application:
+    name: NotificationServiceServer
+  config:
+    activate:
+      on-profile: "k8s"
+  datasource:
+    url: jdbc:mysql://${MYSQLHOST:127.0.0.1}:3306/medicalguidance?createDatabaseIfNotExist=true&serverTimezone=CTT
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
 
 eureka:
   instance:

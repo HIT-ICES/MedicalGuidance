@@ -21,7 +21,6 @@ public class PatientController {
         try {
             MResponse m = MResponse.successMResponse();
 
-
             return m;
         }catch (Exception e){
             return MResponse.failedMResponse();
@@ -29,7 +28,7 @@ public class PatientController {
     }
 
 
-    @GetMapping("getMyPatientIll")
+    @PostMapping("getMyPatientIll")
     public MResponse getMyPatientIll(){
         try {
             MResponse m = MResponse.successMResponse();
@@ -40,16 +39,4 @@ public class PatientController {
         }
     }
 
-
-    @GetMapping("openChat")
-    public MResponse openChat(){
-        try {
-            MResponse m = MResponse.successMResponse();
-            // todo: 请求打开一个聊天的窗口， 及时聊天记录
-
-            return m;
-        }catch (Exception e){
-            return MResponse.failedMResponse();
-        }
-    }
 }
